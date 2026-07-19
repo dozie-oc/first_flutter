@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_application_1/models/category_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-List<CategoryModel> categories = [];
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<CategoryModel> categories = [];
+
+  void _getCategories() {
+    categories = CategoryModel.getCategories();
+  }
 
   @override
   Widget build(BuildContext context){
+    _getCategories();
     return  Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
@@ -43,9 +54,19 @@ List<CategoryModel> categories = [];
               margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
               height: 100,
               color: Colors.green,
-              child: ListView.builder(
+              child: ListView.separated(
+                itemCount: categories.length,
+                scrollDirection: Axis.horizontal,
+                padd
+                separatorBuilder: (context, index) => SizedBox(width: 25),
                 itemBuilder: (context, index) {
-                  return Container()
+                  return Container( 
+                    width: 150,
+                  decoration: BoxDecoration(
+                    color: categories[index].boxColor.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  );
                 },
               ),
             ),
@@ -62,7 +83,7 @@ List<CategoryModel> categories = [];
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Color(0xff101617).withOpacity(0.11),
+              color: Color(0xff101617).withValues(alpha: 0.11),
               blurRadius: 40,
               spreadRadius: 0.0
             )
@@ -75,7 +96,7 @@ List<CategoryModel> categories = [];
             hintText: 'Search for food',
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: SvgPicture.asset('assets/icons/search.svg'),
+              child: SvgPicture.asset('assets/icons/Search.svg'),
             ),
             suffixIcon: SizedBox(
               width: 50,
