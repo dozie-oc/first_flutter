@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+List<CategoryModel> categories = [];
+
   @override
   Widget build(BuildContext context){
     return  Scaffold(
@@ -41,11 +43,10 @@ class HomePage extends StatelessWidget {
               margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
               height: 100,
               color: Colors.green,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  // Add your category widgets here
-                ],
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Container()
+                },
               ),
             ),
             // Add your category widgets here
