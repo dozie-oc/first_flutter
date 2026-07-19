@@ -8,21 +8,103 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context){
     return  Scaffold(
       appBar: appBar(),
-      body: Column(children: [
-        Container(
-          margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: const Text(
-            'What do you want for dinner?',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+      backgroundColor: Colors.white,
+      body: Column(children:[
+        _searchField(),
+        Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Category',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'See All',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              height: 100,
+              color: Colors.green,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  // Add your category widgets here
+                ],
+              ),
+            ),
+            // Add your category widgets here
+          ],
+        )
+        ]),
+        );
+  }
+
+  Container _searchField() {
+    return Container(
+        margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff101617).withOpacity(0.11),
+              blurRadius: 40,
+              spreadRadius: 0.0
+            )
+          ]
         ),
-      ],)
-        
-    );
+        child: TextField(
+          decoration: InputDecoration(
+            filled:true,
+            fillColor: Colors.white,
+            hintText: 'Search for food',
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SvgPicture.asset('assets/icons/search.svg'),
+            ),
+            suffixIcon: SizedBox(
+              width: 50,
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    VerticalDivider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      width: 1,
+                      indent: 12,
+                      endIndent: 12, 
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: SvgPicture.asset('assets/icons/filter.svg'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            contentPadding: EdgeInsets.all(5),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide.none
+            )
+          ), 
+        )
+          );
   }
 
   AppBar appBar() {
