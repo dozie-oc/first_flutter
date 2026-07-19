@@ -7,17 +7,40 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return  Scaffold(
-      appBar: AppBar(
-        title: const Text('Dinner',
-        style : TextStyle(
-          fontFamily: 'Poppins',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+      appBar: appBar(),
+      body: Column(children: [
+        Container(
+          margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: const Text(
+            'What do you want for dinner?',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-      ),
-      backgroundColor: Colors.orange,
-      centerTitle: true,
-      leading: Container(
+        ),
+      ],)
+        
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
+      title: const Text('Dinner',
+      style : TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        ),
+    ),
+    backgroundColor: Colors.orange,
+    centerTitle: true,
+    leading: GestureDetector(
+      onTap: () {
+        // Handle the tap event here
+      },
+      child: Container(
         margin: EdgeInsets.all(10),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -26,22 +49,26 @@ class HomePage extends StatelessWidget {
         ),
         child: SvgPicture.asset('assets/icons/Arrow - Left 2.svg'),
       ),
-      actions: [
-        Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          width: 30,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(50, 255, 255, 255),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: SvgPicture.asset('assets/icons/dots.svg',
-          height: 5,
-          width: 5,
-        )
-        )
-      ],
+    ),
+    actions: [
+      GestureDetector(
+        onTap: () {
+          // Handle the tap event here
+        },
+      child: Container(
+        margin: EdgeInsets.all(10),
+        alignment: Alignment.center,
+        width: 30,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(50, 255, 255, 255),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: SvgPicture.asset('assets/icons/dots.svg',
+        height: 5,
+        width: 5,
+      )
+      )
       ),
-    );
+  ]);
   }
 }
