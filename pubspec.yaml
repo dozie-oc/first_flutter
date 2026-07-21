@@ -64,6 +64,10 @@ flutter:
     - assets/icons/dots.svg
     - assets/icons/Search.svg
     - assets/icons/Filter.svg
+    - assets/icons/orange-snacks.svg
+    - assets/icons/pie.svg
+    - assets/icons/pancakes.svg
+    - assets/icons/plate.svg
 
 #      - images/a_dot_ham.jpeg
 

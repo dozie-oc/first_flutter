@@ -24,57 +24,89 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: Column(children:[
         _searchField(),
-        Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Category',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'See All',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              height: 100,
-              color: Colors.green,
-              child: ListView.separated(
-                itemCount: categories.length,
-                scrollDirection: Axis.horizontal,
-                padd
-                separatorBuilder: (context, index) => SizedBox(width: 25),
-                itemBuilder: (context, index) {
-                  return Container( 
-                    width: 150,
-                  decoration: BoxDecoration(
-                    color: categories[index].boxColor.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  );
-                },
-              ),
-            ),
-            // Add your category widgets here
-          ],
-        )
+        _categoriesSection()
         ]),
         );
+  }
+
+  Column _categoriesSection() {
+    return Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Category',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'See All',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            height: 100,
+            // color: Colors.white,
+            child: ListView.separated(
+              itemCount: categories.length,
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20
+                ),
+              separatorBuilder: (context, index) => SizedBox(width: 25),
+              itemBuilder: (context, index) {
+                return Container( 
+                  width: 100,
+                decoration: BoxDecoration(
+                  color: categories[index].boxColor.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle
+                      ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(categories[index].iconpath),
+                    ),
+                    ),
+                    Text(
+                      categories[index].name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 14
+                      ),
+                    )
+                  ],
+                )
+                );
+              },
+            ),
+          ),
+          // Add your category widgets here
+        ],
+      );
   }
 
   Container _searchField() {
