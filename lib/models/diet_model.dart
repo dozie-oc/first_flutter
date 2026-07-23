@@ -7,6 +7,7 @@ class DietModel {
   String duration;
   String calorie;
   bool viewIsSelected;
+  Color get boxColor => viewIsSelected ? Color.fromARGB(255, 152, 82, 16) : Color.fromARGB(255, 254, 191, 54);
 
   DietModel({
     required this.name,

@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         _categoriesSection(),
         SizedBox(height: 20),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -39,12 +40,11 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'Poppins',
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-              )
-                        ,
+              ),
               ),
             ),
+            SizedBox(height: 15),
             Container(
-              color: Colors.blue,
               height: 240,
               child: ListView.separated(
                 itemCount: diets.length,
@@ -58,8 +58,8 @@ class _HomePageState extends State<HomePage> {
                   return Container( 
                     width: 200,
                     decoration: BoxDecoration(
-                      color: Colors.orange.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(10),
+                      color: diets[index].boxColor.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -83,8 +83,35 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 14
                           ),
+                        ),
+                        Text(
+                          diets[index].level + ' | ' + diets[index].duration
+                          + ' | ' + diets[index].calorie,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 12
+                          ),
+                        ),
+                        Container(
+                          height: 45,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              Color(0xff90CEFF),
+                              Color(0xff92A3FD)])
+                          ),
+                        child : Center(child: Text(
+                          'Start',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 14
+                          ),
+                          )
                         )
-                      ],
+                        )
+                    ],
                     )
                   );
                 },
