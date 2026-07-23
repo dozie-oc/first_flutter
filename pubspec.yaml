@@ -68,6 +68,8 @@ flutter:
     - assets/icons/pie.svg
     - assets/icons/pancakes.svg
     - assets/icons/plate.svg
+    - assets/icons/honey-pancakes.svg
+    - assets/icons/canai-bread.svg
 
 #      - images/a_dot_ham.jpeg
 

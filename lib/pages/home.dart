@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_application_1/models/category_model.dart';
+import 'package:flutter_application_1/models/diet_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,22 +12,89 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<CategoryModel> categories = [];
+  List<DietModel> diets = [];
 
-  void _getCategories() {
+  void _getInitialInfo(){
     categories = CategoryModel.getCategories();
+    diets = DietModel.getdiets();
   }
 
   @override
   Widget build(BuildContext context){
-    _getCategories();
+    _getInitialInfo();
     return  Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
       body: Column(children:[
         _searchField(),
-        _categoriesSection()
-        ]),
-        );
+        _categoriesSection(),
+        SizedBox(height: 20),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'Recommendation' '\n' 'for diet',
+                style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+              )
+                        ,
+              ),
+            ),
+            Container(
+              color: Colors.blue,
+              height: 240,
+              child: ListView.separated(
+                itemCount: diets.length,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(
+                  left: 20,
+                  right: 20
+                  ),
+                separatorBuilder: (context, index) => SizedBox(width: 25),
+                itemBuilder: (context, index) {
+                  return Container( 
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.orange.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SvgPicture.asset(diets[index].iconpath),
+                          ),
+                        ),
+                        Text(
+                          diets[index].name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 14
+                          ),
+                        )
+                      ],
+                    )
+                  );
+                },
+              ),
+        )
+        ],
+        ),
+      ],
+      ),
+      );
   }
 
   Column _categoriesSection() {
@@ -145,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: SvgPicture.asset('assets/icons/filter.svg'),
+                      child: SvgPicture.asset('assets/icons/Filter.svg'),
                     ),
                   ],
                 ),
